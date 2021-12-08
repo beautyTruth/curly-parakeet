@@ -41,7 +41,7 @@ my code below
 const slider = document.querySelector(".container");
 let isDown = false;
 let startx;
-let scrollLeft;
+let scrollToLeft;
 
 slider.addEventListener("mousedown", (e) => {
   isDown = true;
@@ -51,7 +51,9 @@ slider.addEventListener("mousedown", (e) => {
 
   // console.log(e);
   // console.log(slider.offsetLeft);
-  console.log(startx);
+  // console.log(startx);
+  // console.log(slider.scrollLeft);
+  scrollToLeft = slider.scrollLeft;
 });
 
 slider.addEventListener("mouseup", () => {
@@ -62,4 +64,15 @@ slider.addEventListener("mouseup", () => {
 slider.addEventListener("mouseleave", () => {
   isDown = false;
   slider.classList.remove("active");
+});
+
+slider.addEventListener("mousemove", (e) => {
+  if (!isDown) return;
+  e.preventDefault();
+
+  const distanceX = e.pageX - slider.offsetLeft;
+  // console.log({ distanceX, startx });
+  const walk = distanceX - startx;
+  // console.log(walk);
+  slider.scrollLeft = scrollToLeft - walk;
 });
