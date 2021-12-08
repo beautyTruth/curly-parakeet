@@ -37,3 +37,29 @@
 /*
 my code below
 */
+
+const slider = document.querySelector(".container");
+let isDown = false;
+let startx;
+let scrollLeft;
+
+slider.addEventListener("mousedown", (e) => {
+  isDown = true;
+  slider.classList.add("active");
+
+  startx = e.pageX - slider.offsetLeft;
+
+  // console.log(e);
+  // console.log(slider.offsetLeft);
+  console.log(startx);
+});
+
+slider.addEventListener("mouseup", () => {
+  isDown = false;
+  slider.classList.remove("active");
+});
+
+slider.addEventListener("mouseleave", () => {
+  isDown = false;
+  slider.classList.remove("active");
+});
